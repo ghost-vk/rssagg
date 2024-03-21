@@ -65,7 +65,18 @@ func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
 
 		pubAt, err := time.Parse(time.RFC1123Z, item.PubDate)
 		if err != nil {
-			log.Println("worker: error parse date", err)
+			log.Printf("worker: error parse date [%v], err: %v\n", pubAt, err)
+		}
+
+		// Можно было обработать так, используя текст ошибки CreatePost:
+		// if strings.Contains(err.Error(), "duplicate key") { ... }
+		isPostExists, err := db.CheckIfPostWithUrlExists(context.Background(), item.Link)
+		if err != nil {
+			log.Println("worker: check post exists error", err)
+		}
+
+		if isPostExists {
+			continue
 		}
 
 		_, err = db.CreatePost(context.Background(), database.CreatePostParams{

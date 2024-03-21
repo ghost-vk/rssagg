@@ -13,6 +13,17 @@ import (
 	"github.com/google/uuid"
 )
 
+const checkIfPostWithUrlExists = `-- name: CheckIfPostWithUrlExists :one
+SELECT EXISTS(SELECT 1 FROM posts WHERE url=$1)
+`
+
+func (q *Queries) CheckIfPostWithUrlExists(ctx context.Context, url string) (bool, error) {
+	row := q.db.QueryRowContext(ctx, checkIfPostWithUrlExists, url)
+	var exists bool
+	err := row.Scan(&exists)
+	return exists, err
+}
+
 const createPost = `-- name: CreatePost :one
 INSERT INTO posts(
   id, 
@@ -64,7 +75,10 @@ func (q *Queries) CreatePost(ctx context.Context, arg CreatePostParams) (Post, e
 }
 
 const getAllPosts = `-- name: GetAllPosts :many
-SELECT id, created_at, updated_at, title, description, published_at, url, feed_id FROM posts ORDER BY created_at DESC LIMIT $1 OFFSET $2
+SELECT id, created_at, updated_at, title, description, published_at, url, feed_id FROM posts 
+ORDER BY created_at DESC 
+LIMIT $1 
+OFFSET $2
 `
 
 type GetAllPostsParams struct {
@@ -74,6 +88,54 @@ type GetAllPostsParams struct {
 
 func (q *Queries) GetAllPosts(ctx context.Context, arg GetAllPostsParams) ([]Post, error) {
 	rows, err := q.db.QueryContext(ctx, getAllPosts, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Post
+	for rows.Next() {
+		var i Post
+		if err := rows.Scan(
+			&i.ID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.Title,
+			&i.Description,
+			&i.PublishedAt,
+			&i.Url,
+			&i.FeedID,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getPostsForUser = `-- name: GetPostsForUser :many
+SELECT p.id, p.created_at, p.updated_at, p.title, p.description, p.published_at, p.url, p.feed_id FROM posts p
+  LEFT JOIN feed_follows ff ON ff.feed_id=p.feed_id  
+  LEFT JOIN users u ON ff.user_id=u.id
+WHERE u.api_key = $1
+ORDER BY p.published_at DESC
+LIMIT $2
+OFFSET $3
+`
+
+type GetPostsForUserParams struct {
+	ApiKey string
+	Limit  int32
+	Offset int32
+}
+
+func (q *Queries) GetPostsForUser(ctx context.Context, arg GetPostsForUserParams) ([]Post, error) {
+	rows, err := q.db.QueryContext(ctx, getPostsForUser, arg.ApiKey, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}
