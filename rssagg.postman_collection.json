@@ -1,0 +1,771 @@
+{
+	"info": {
+		"_postman_id": "2ae0d93c-b707-4aa5-ac0e-078b744a0c1f",
+		"name": "rssagg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17126290"
+	},
+	"item": [
+		{
+			"name": "v1/healthz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/healthz",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"healthz"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/healthz",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"healthz"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:19:38 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		},
+		{
+			"name": "v1/err",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/err",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"err"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "err sample",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/err",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"err"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:19:14 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"test error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"Vlad Kuznetsov\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success-register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Vlad Kuznetsov\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:14:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f6332990-a985-46e9-ac01-14f60a2be0f1\",\n    \"created_at\": \"2024-03-21T05:14:56.498137Z\",\n    \"updated_at\": \"2024-03-21T05:14:56.498138Z\",\n    \"name\": \"Vlad Kuznetsov\",\n    \"api_key\": \"2de4951de80986bd0a5eea08e37ed35566c3e2dbe948b41fed059570ab54a622\"\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/feed_follows",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{apiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"feed_id\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/feed_follows",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"feed_follows"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success-register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"Vlad Kuznetsov\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:14:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f6332990-a985-46e9-ac01-14f60a2be0f1\",\n    \"created_at\": \"2024-03-21T05:14:56.498137Z\",\n    \"updated_at\": \"2024-03-21T05:14:56.498138Z\",\n    \"name\": \"Vlad Kuznetsov\",\n    \"api_key\": \"2de4951de80986bd0a5eea08e37ed35566c3e2dbe948b41fed059570ab54a622\"\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/feeds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{apiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Boot Dev Blog\",\n    \"url\":\"https://blog.boot.dev/index.xml\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/feeds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"feeds"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ApiKey {{apiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Lane's Blog\",\n    \"url\":\"https://wagslane.dev/index.xml\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/feeds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"feeds"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:23:09 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "240"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\",\n    \"created_at\": \"2024-03-21T05:23:09.702573Z\",\n    \"updated_at\": \"2024-03-21T05:23:09.702574Z\",\n    \"name\": \"Lane's Blog\",\n    \"url\": \"https://wagslane.dev/index.xml\",\n    \"user_id\": \"f6332990-a985-46e9-ac01-14f60a2be0f1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ApiKey {{apiKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:18:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"f6332990-a985-46e9-ac01-14f60a2be0f1\",\n    \"created_at\": \"2024-03-21T05:14:56.498137Z\",\n    \"updated_at\": \"2024-03-21T05:14:56.498138Z\",\n    \"name\": \"Vlad Kuznetsov\",\n    \"api_key\": \"2de4951de80986bd0a5eea08e37ed35566c3e2dbe948b41fed059570ab54a622\"\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/posts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{apiKey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"offset\": 0,\n    \"limit\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ApiKey {{apiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"offset\": 0,\n    \"limit\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"posts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 11:38:34 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"9a73ba09-e6de-489f-a67c-045f33d8bbec\",\n        \"created_at\": \"2024-03-21T11:00:30.036304Z\",\n        \"updated_at\": \"2024-03-21T11:00:30.036304Z\",\n        \"title\": \"About Lane Wagner\",\n        \"description\": {\n            \"String\": \"I&rsquo;ve been writing code since 2010, first in Python, then primarily in Go and JS/TS. I&rsquo;ve spent most of my career as a backend developer and data engineer. After a couple of years leading teams of Go developers, I&rsquo;m now working full-time on Boot.dev and host the Backend Banter podcast.\\nGet in touch Twitter Linkedin GitHub Email: lane at boot.dev Podcast and show appearances August 2, 2023: Ardan Labs Podcast May 15, 2023: Cup o&rsquo; Go Podcast May 11, 2023: Adventures in DevOps April 27, 2023: Indie Hackers Podcast April 21, 2023: All the Code Podcast Feb 28, 2023: Scrimba Podcast Jan 30, 2023: HTTP Course on FreeCodeCamp&rsquo;s YouTube Jan 20, 2023: Coding with Eddie Jaoude Nov 15, 2022: JavaScript Jabber Nov 08, 2022: Views on Vue Oct 28, 2022: Compressed.\",\n            \"Valid\": true\n        },\n        \"published_at\": \"0001-01-01T00:00:00Z\",\n        \"url\": \"https://wagslane.dev/about/\",\n        \"feed_id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\"\n    },\n    {\n        \"id\": \"be08cbd0-4740-4e6b-b8d4-b5e94a6053f5\",\n        \"created_at\": \"2024-03-21T11:00:30.035468Z\",\n        \"updated_at\": \"2024-03-21T11:00:30.035468Z\",\n        \"title\": \"A Case Against \\\"A Case for the Book of Mormon\\\"\",\n        \"description\": {\n            \"String\": \"&ldquo;A Case for the Book of Mormon&rdquo; is a book that is not freely available as far as I’m aware, but in this response, I will include relevant quotes for readers who don’t have access to the full book. Read on and I‘ll point out only the most egregious examples that the author, Tad R. Callister, makes in his book full of misleading logic and fallacious claims.\\nDisclaimer If you have access to the original book, you&rsquo;ll notice that Callister makes the same errors over and over in many disparate sections of the book.\",\n            \"Valid\": true\n        },\n        \"published_at\": \"2019-08-25T00:00:00Z\",\n        \"url\": \"https://wagslane.dev/posts/a-case-against-a-case-for-the-book-of-mormon/\",\n        \"feed_id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\"\n    },\n    {\n        \"id\": \"e6be2788-8952-4f46-bd49-e464e7eaa512\",\n        \"created_at\": \"2024-03-21T11:00:30.034565Z\",\n        \"updated_at\": \"2024-03-21T11:00:30.034565Z\",\n        \"title\": \"Leave Scrum to Rugby, I Like Getting Stuff Done\",\n        \"description\": {\n            \"String\": \"Scrum is a buzzword, the virtue signal of choice for middle management in software organizations.\\nIf your goal as a manager is to implement a system by which you:\\nSpeed up the appearance of progress Pay for twice the amount of people you need Gather approximate data based on meaningless metrics Then Scrum is exactly what you&rsquo;re looking for!\\n&ldquo;Oh you had problems with Scrum at your last employer? Well, that&rsquo;s not real Scrum.\",\n            \"Valid\": true\n        },\n        \"published_at\": \"2020-05-18T00:00:00Z\",\n        \"url\": \"https://wagslane.dev/posts/leave-scrum-to-rugby/\",\n        \"feed_id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\"\n    },\n    {\n        \"id\": \"b27777eb-1a74-4dda-8747-785e021db4fa\",\n        \"created_at\": \"2024-03-21T11:00:30.033717Z\",\n        \"updated_at\": \"2024-03-21T11:00:30.033717Z\",\n        \"title\": \"Your Manager Can’t Code? They Shouldn’t Be Your Manager\",\n        \"description\": {\n            \"String\": \"Managers who can’t code are an outdated artifact of corporate America circa 2005. The best managers that I’ve had spend ~80% of their time coding, architecting, or doing technical work that requires engineering experience. If your manager thinks coding and other technical work is &ldquo;beneath&rdquo; them then they need a dose of humble pie. Your organization would likely be better off without them.\\nBut Managers Manage People! There is a long-running stigma associated with developers.\",\n            \"Valid\": true\n        },\n        \"published_at\": \"2020-07-14T00:00:00Z\",\n        \"url\": \"https://wagslane.dev/posts/managers-that-cant-code/\",\n        \"feed_id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\"\n    },\n    {\n        \"id\": \"845e2b81-1edb-42cb-a45c-92c979640694\",\n        \"created_at\": \"2024-03-21T11:00:30.032751Z\",\n        \"updated_at\": \"2024-03-21T11:00:30.032751Z\",\n        \"title\": \"Saving a Third of Our Memory by Re-ordering Go Struct Fields\",\n        \"description\": {\n            \"String\": \"We had applications at one of my previous companies that typically ran with ~2GB in memory at any given time, but by simply changing the order of some uint variables we managed to drop the memory usage to less than 1.4GB. Let’s dive into how inefficient field ordering in Go structs can have a huge impact on the memory footprint of a program.\\nOur Situation The vast majority of the allocated memory in our case was due to an enormous slice of stats structs.\",\n            \"Valid\": true\n        },\n        \"published_at\": \"2020-08-07T00:00:00Z\",\n        \"url\": \"https://wagslane.dev/posts/go-struct-ordering/\",\n        \"feed_id\": \"d830d945-f1c3-4c78-b2a3-c684993f81bf\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "v1/feed_follows",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey 57db38f246f415a0fe55940110f1eb12a77c2d5ad7c93ce461c907a73773ecbe",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"feed_id\": \"fccc15e8-4bb9-4330-932c-5321919822e2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/feed_follows/{{feedFollowId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"feed_follows",
+						"{{feedFollowId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ApiKey 57db38f246f415a0fe55940110f1eb12a77c2d5ad7c93ce461c907a73773ecbe",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"feed_id\": \"fccc15e8-4bb9-4330-932c-5321919822e2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/feed_follows/{{feedFollowId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"feed_follows",
+								"{{feedFollowId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 16:44:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "v1/feed_follows",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ApiKey {{apiKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/v1/feed_follows",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"feed_follows"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ApiKey {{apiKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/v1/feed_follows",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"feed_follows"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 05:18:50 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "feedFollowId",
+			"value": "7f074b55-1301-4182-8310-d380480ffdcd"
+		},
+		{
+			"key": "apiKey",
+			"value": "2de4951de80986bd0a5eea08e37ed35566c3e2dbe948b41fed059570ab54a622",
+			"type": "string"
+		}
+	]
+}
