@@ -21,7 +21,8 @@ rssagg
 # Go workspace file
 go.work
 
-.env
+*.env
+!example.env
 
 ## MacOS
 # General
