@@ -12,5 +12,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  rssagg:
+    image: rssagg:dev
+    ports:
+      - "8000:${PORT}"
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    env_file:
+      - "./docker.env"
+
 volumes:
   postgres_data:
